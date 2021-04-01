@@ -7,7 +7,7 @@ namespace ecnGraph{
 		this->Vertices.resize(n);
 	}
 
-	int Graph::Size()
+	int Graph::Size() const
 	{
 		return Vertices.size();
 	}
@@ -18,7 +18,7 @@ namespace ecnGraph{
 		return Vertices.size() - 1;
 	}
 	
-	bool Graph::IsEdge(int a, int b)
+	bool Graph::IsEdge(int a, int b) const
 	{
 		return Vertices[a].count(b);
 	}
@@ -35,7 +35,7 @@ namespace ecnGraph{
 		Vertices[b].erase(a);
 	}
 
-	int Graph::Deg()
+	int Graph::Deg() const
 	{
 		int res = 0;
 		for (int i = 0; i < Vertices.size();i++) {
@@ -44,7 +44,7 @@ namespace ecnGraph{
 		return res;
 	}
 
-	int Graph::Deg(int k)
+	int Graph::Deg(int k) const
 	{
 		return Vertices[k].size();
 	}
