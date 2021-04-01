@@ -18,5 +18,14 @@ namespace EquitableChromaticNumberUnitTests
 			Graph g(n);
 			Assert::AreEqual(g.Size(), n);
 		}
+
+		TEST_METHOD(ConstructorAndSize0)
+		{
+			using namespace ecnGraph;
+			int n = 0;
+			Graph g(n);
+			Assert::AreEqual(g.Size(), n);
+
+		}
 	};
 }
