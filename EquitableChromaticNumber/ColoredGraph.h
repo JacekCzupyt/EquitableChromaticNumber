@@ -20,7 +20,7 @@ namespace ecnGraph {
 		/// </summary>
 		/// <param name="n">Number of vertices to add</param>
 		/// <returns>The index of the last vertex of the new graph</returns>
-		int AddVertex(int n) override;
+		int AddVertex(int n = 1/*Number of vertices to add*/) override;
 
 		/// Returns the number of different colors used, does not count uncolored vertices (color -1)
 		int GetColorCount() const;
