@@ -14,14 +14,14 @@ namespace ecnGraph {
 		Graph(int n = 0/*Number of vertices*/);
 
 		/// Returns the number of vertices in the graph
-		int Size();
+		int Size() const;
 
 		/// <summary>
 		/// Add vertices to the graph
 		/// </summary>
 		/// <param name="n">Number of vertices to add</param>
 		/// <returns>The index of the last vertex of the new graph</returns>
-		int AddVertex(int n = 1/*Number of vertices to add*/);
+		virtual int AddVertex(int n = 1/*Number of vertices to add*/);
 
 		/// <summary>
 		/// Checks if there exists an edge between the two vertices
@@ -29,7 +29,7 @@ namespace ecnGraph {
 		/// <param name="a">Vertex a</param>
 		/// <param name="b">Vertex b</param>
 		/// <returns>Is "ab" an edge</returns>
-		bool IsEdge(int a, int b);
+		bool IsEdge(int a, int b) const;
 
 		/// <summary>
 		/// Adds an edge between two vertices 
@@ -48,9 +48,9 @@ namespace ecnGraph {
 		void RemoveEdge(int a, int b);
 
 		/// Returns the maximum degree of the graph
-		int Deg();
+		int Deg() const;
 
 		/// Returns the degree of the the vetex k
-		int Deg(int k);
+		int Deg(int k) const;
 	};
 }
