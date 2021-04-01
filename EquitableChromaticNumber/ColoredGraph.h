@@ -10,7 +10,7 @@ namespace ecnGraph {
 		public Graph
 	{
 	public:
-		/// Colors are intigers 0-n, -1 means no color is assigned to this vertex
+		/// Colors are consecutive intigers starting from 0, -1 means no color is assigned to this vertex
 		std::vector<int> Colors;
 
 		ColoredGraph(int n/*Number of vertices*/);

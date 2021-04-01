@@ -9,8 +9,8 @@ namespace ecnGraph {
 
 	int ColoredGraph::AddVertex(int n)
 	{
-		Graph::AddVertex(n);
 		Colors.resize(Colors.size() + n, -1);
+		return Graph::AddVertex(n);
 	}
 
 	int ColoredGraph::GetColorCount() const
@@ -40,7 +40,7 @@ namespace ecnGraph {
 	{
 		for (int i = 0; i < Size(); i++) {
 			for (int neighbour : Vertices[i]) {
-				if (Colors[i] == Colors[neighbour] and Colors[i] != -1)
+				if (IsEdge(i, neighbour) && Colors[i] == Colors[neighbour] && Colors[i] != -1)
 					return false;
 			}
 		}
