@@ -75,6 +75,12 @@ namespace ecnGraph {
 		return maxVal - minVal <= 1;
 	}
 
+	/// O(|V| * (deg(G) + log|V|)) time
+	bool ColoredGraph::IsColored() const
+	{
+		return IsColoredFully() && IsColoredProperly() && IsColoredEquitably();
+	}
+
 
 
 

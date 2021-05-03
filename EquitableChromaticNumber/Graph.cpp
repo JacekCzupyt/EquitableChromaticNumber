@@ -33,14 +33,14 @@ namespace ecnGraph{
 		return Vertices[a].count(b);
 	}
 
-	/// O(log deg(a)+deg(b)) time
+	/// O(log deg(a) + log deg(b)) time
 	void Graph::AddEdge(int a, int b)
 	{
 		Vertices[a].insert(b);
 		Vertices[b].insert(a);
 	}
 
-	/// O(log deg(a)+deg(b)) time
+	/// O(log deg(a) + log deg(b)) time
 	void Graph::RemoveEdge(int a, int b)
 	{
 		Vertices[a].erase(b);

@@ -146,6 +146,7 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractColoringAlgorithm.h" />
     <ClInclude Include="ColoredGraph.h" />
     <ClInclude Include="Graph.h" />
   </ItemGroup>
