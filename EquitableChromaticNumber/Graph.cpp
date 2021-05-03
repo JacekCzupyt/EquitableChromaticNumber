@@ -14,6 +14,12 @@ namespace ecnGraph{
 		return Vertices.size();
 	}
 
+	/// O(1) time
+	const std::set<int>& Graph::GetNeighbours(int a) const
+	{
+		return Vertices[a];
+	}
+
 	/// O(n) time
 	int Graph::AddVertex(int n)
 	{

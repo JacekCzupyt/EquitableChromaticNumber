@@ -17,6 +17,13 @@ namespace ecnGraph {
 		int Size() const;
 
 		/// <summary>
+		/// Returns the set of neighbouring verticies of the vertex a
+		/// </summary>
+		/// <param name="a">Vertex a</param>
+		/// <returns>Set of verticies b, such that "ab" is an edge in the graph</returns>
+		const std::set<int>& GetNeighbours(int a) const;
+
+		/// <summary>
 		/// Add vertices to the graph
 		/// </summary>
 		/// <param name="n">Number of vertices to add</param>
