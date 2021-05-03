@@ -36,6 +36,9 @@ namespace ecnGraph {
 		/// Does NOT check if coloring is proper
 		/// </summary>
 		bool IsColoredEquitably() const;
+
+		/// Check if the graph is fully, properly, and equitably colored
+		bool IsColored() const;
 	};
 
 }
