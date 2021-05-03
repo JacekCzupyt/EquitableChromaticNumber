@@ -32,5 +32,8 @@
     <ClInclude Include="ColoredGraph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AbstractColoringAlgorithm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
