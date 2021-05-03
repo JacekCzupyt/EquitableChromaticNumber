@@ -3,16 +3,22 @@
 
 namespace ecnGraph {
 	
+	/// O(n) time
 	ColoredGraph::ColoredGraph(int n) :Graph(n) {
 		Colors.resize(n, -1);
 	}
 
+	/// O(n) time
 	int ColoredGraph::AddVertex(int n)
 	{
 		Colors.resize(Colors.size() + n, -1);
 		return Graph::AddVertex(n);
 	}
 
+	/// <summary>
+	/// This implementation is O(|V| * log |V|) and assumes that colors can be arbitrarly numbered
+	/// If we assume that colors are numbered consecutivly (1-n) and all appear at least once, a O(|V|) implementation is possible
+	/// </summary>
 	int ColoredGraph::GetColorCount() const
 	{
 		std::set<int> ColorSet;
@@ -23,10 +29,7 @@ namespace ecnGraph {
 		return ColorSet.size();
 	}
 
-	/// <summary>
-	/// This implementation is O(n * log n) and assumes that colors can be arbitrarly numbered
-	/// If we assume that colors are numbered consecutivly (1-n) and all appear at least once, a O(n) implementation is possible
-	/// </summary>
+	/// O(|V|) time
 	bool ColoredGraph::IsColoredFully() const
 	{
 		for (int i = 0; i < Size(); i++) {
@@ -36,6 +39,7 @@ namespace ecnGraph {
 		return true;
 	}
 
+	/// O(|V| * deg(G)) time
 	bool ColoredGraph::IsColoredProperly() const
 	{
 		for (int i = 0; i < Size(); i++) {
@@ -48,8 +52,8 @@ namespace ecnGraph {
 	}
 
 	/// <summary>
-	/// This implementation is O(n * log n) and assumes that colors can be arbitrarly numbered
-	/// If we assume that colors are numbered consecutivly (1-n) and all appear at least once, a O(n) implementation is possible
+	/// This implementation is O(|V| * log |V|) and assumes that colors can be arbitrarly numbered
+	/// If we assume that colors are numbered consecutivly (1-n) and all appear at least once, a O(|V|) implementation is possible
 	/// </summary>
 	bool ColoredGraph::IsColoredEquitably() const
 	{
