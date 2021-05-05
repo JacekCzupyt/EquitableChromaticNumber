@@ -154,13 +154,14 @@ namespace ecnGraph {
 		return BestMoves[rand() % BestMoves.size()];
 	}
 	
-	void BitsColoringAlgorithm::TabooSearch::Search(int alpha)
+	int BitsColoringAlgorithm::TabooSearch::Search(int alpha)
 	{
 		//best solution
 		std::vector<int> sb = e.graph->Colors;
 		//iterations since sb updated
 		int d = 0;
 		//evaluation function output of the current and best solution
+		// TODO: Get precomputed evaluation function?
 		int fs = EvaluationFunction();
 
 		for (int i = 0; d < alpha && fs>0; i++) {
@@ -180,11 +181,39 @@ namespace ecnGraph {
 		}
 
 		e.graph->Colors = sb;
+		return fs;
 	}
 	
-	void BitsColoringAlgorithm::TabooSearch::IteratedSearch(int k, int beta, int alpha)
+	int BitsColoringAlgorithm::TabooSearch::IteratedSearch(int k, int beta, int alpha)
 	{
 		colorCount = k;
+		InitializeKColoring();
+		Search(alpha);
+		
+		// Current best solution
+		std::vector<int> s = e.graph->Colors;
+		// Iterations since s has been updated
+		int d = 0;
+		// Evaluation of the current solution
+		int fs = EvaluationFunction();
+
+		while (d < beta && fs > 0) {
+			PertubationOperator();
+			int fsp = Search(alpha);
+
+			if (fsp < fs) {
+				s = e.graph->Colors;
+				d = 0;
+				fs = fsp;
+			}
+			else {
+				e.graph->Colors = s;
+				d++;
+			}
+		}
+
+		e.graph->Colors = s;
+		return fs;
 	}
 
 	void BitsColoringAlgorithm::TabooSearch::Refresh()

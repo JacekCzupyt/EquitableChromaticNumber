@@ -23,7 +23,8 @@ namespace ecnGraph {
 			/// Runs a tabu search on the current coloring of the graph
 			/// </summary>
 			/// <param name="alpha">Depth of the tabu serch</param>
-			void Search(int alpha);
+			/// <returns>The evaluation of the provided solution</returns>
+			int Search(int alpha);
 
 			/// <summary>
 			/// Runs an iterated tabu search on the provided graph with the specified color count
@@ -31,7 +32,8 @@ namespace ecnGraph {
 			/// <param name="k">Color count</param>
 			/// <param name="beta">Depth of the iterated tabu serch</param>
 			/// <param name="alpha">Depth of the tabu serch</param>
-			void IteratedSearch(int k, int beta, int alpha);
+			/// /// <returns>The evaluation of the provided solution</returns>
+			int IteratedSearch(int k, int beta, int alpha);
 
 			void Refresh();
 		private:
@@ -62,6 +64,13 @@ namespace ecnGraph {
 			/// <param name="mt">Maxiumum time allowed by tabu search (t - tt)</param>
 			/// <returns>The best avalible move</returns>
 			move ExploreNeighborhood(int mt);
+
+			/// <summary>
+			/// Generate an initial solution with as few conflicts as possible
+			/// </summary>
+			void InitializeKColoring();
+
+			void PertubationOperator();
 		};
 	};
 }
