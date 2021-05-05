@@ -25,9 +25,11 @@ namespace ecnGraph {
 			BitsColoringAlgorithm& e;
 			std::vector<std::vector<int>> evaluationMatrix;
 			std::vector<std::vector<int>> tabooList;
+			std::vector<int> colorHistogram;
 
 			std::vector<std::vector<int>> ConstructEvaluationMatrix();
 			std::vector<std::vector<int>> InitializeTabooList();
+			std::vector<int> InitializeColorHistogram();
 			void ExploreNeighborhood(int mt);
 		};
 	};
