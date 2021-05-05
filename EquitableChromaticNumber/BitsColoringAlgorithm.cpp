@@ -133,8 +133,26 @@ namespace ecnGraph {
 		std::vector<int> sb = e.graph->Colors;
 		//iterations since sb updated
 		int d = 0;
-		//evaluation function output of the best and current solution
-		int fsb, fs;
+		//evaluation function output of the current and best solution
+		int fs = EvaluationFunction();
+
+		for (int i = 0; d < alpha && fs>0; i++) {
+			//best move
+			move bm = ExploreNeighborhood(i-10); // TODO: improve tabu tenure
+			
+			ExecuteMove(bm);
+
+			if (bm.df < 0) {
+				sb = e.graph->Colors;
+				d = 0;
+				fs -= bm.df;
+			}
+			else {
+				d++;
+			}
+		}
+
+		e.graph->Colors = sb;
 	}
 }
 

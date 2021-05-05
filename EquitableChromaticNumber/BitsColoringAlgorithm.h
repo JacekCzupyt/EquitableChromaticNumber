@@ -36,6 +36,11 @@ namespace ecnGraph {
 			int EvaluationFunction();
 
 			/// <summary>
+			/// Updates the graph color vector, evaluation function, taboo list and color histogram
+			/// </summary>
+			void ExecuteMove(move);
+
+			/// <summary>
 			/// Explores neighborhood of current coloring, does not change the graph
 			/// </summary>
 			/// <param name="mt">Maxiumum time allowed by tabu search (t - tt)</param>
