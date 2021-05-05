@@ -54,6 +54,32 @@ namespace ecnGraph {
 	{
 		return EvaluationFunction(e.graph->Colors);
 	}
+
+	void BitsColoringAlgorithm::TabooSearch::ExecuteMove(move m, int t)
+	{
+		PartialExecuteMove(m.v1, m.c1, t);
+		PartialExecuteMove(m.v2, m.c2, t);
+	}
+
+	void BitsColoringAlgorithm::TabooSearch::PartialExecuteMove(int v, int c, int t)
+	{
+		if (v == -1) return;
+		//previous color
+		int pc = e.graph->Colors[v];
+
+		//update histogram
+		colorHistogram[pc]--;
+		colorHistogram[c]++;
+		//update tabu list
+		tabooList[v][pc] = t;
+		//update evaluation matrix
+		for (int u : e.graph->GetNeighbours(v)) {
+			evaluationMatrix[u][pc]--;
+			evaluationMatrix[u][c]++;
+		}
+		//update graph
+		e.graph->Colors[v] = c;
+	}
 	
 	BitsColoringAlgorithm::TabooSearch::move BitsColoringAlgorithm::TabooSearch::ExploreNeighborhood(int mt)
 	{

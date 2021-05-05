@@ -36,9 +36,10 @@ namespace ecnGraph {
 			int EvaluationFunction();
 
 			/// <summary>
-			/// Updates the graph color vector, evaluation function, taboo list and color histogram
+			/// Updates the graph color vector, evaluation matrix, taboo list and color histogram
 			/// </summary>
-			void ExecuteMove(move);
+			void ExecuteMove(move m, int t);
+			void PartialExecuteMove(int v, int c, int t);
 
 			/// <summary>
 			/// Explores neighborhood of current coloring, does not change the graph
