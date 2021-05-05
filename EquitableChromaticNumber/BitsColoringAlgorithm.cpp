@@ -112,6 +112,16 @@ namespace ecnGraph {
 
 		return move{ min_df, v1, v2, c1, c2 };
 	}
+	
+	void BitsColoringAlgorithm::TabooSearch::Search(int alpha)
+	{
+		//best solution
+		std::vector<int> sb = e.graph->Colors;
+		//iterations since sb updated
+		int d = 0;
+		//evaluation function output of the best and current solution
+		int fsb, fs;
+	}
 }
 
 
