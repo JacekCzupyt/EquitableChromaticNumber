@@ -2,6 +2,7 @@
 #include <random>
 
 namespace ecnGraph {
+
 	BitsColoringAlgorithm::BitsColoringAlgorithm(double _duration)
 	{
 		duration = _duration;
@@ -198,6 +199,8 @@ namespace ecnGraph {
 			}
 			colors[minSet[rand() % minSet.size()]] = c;
 		}
+
+		RefreshStructures();
 	}
 
 	void BitsColoringAlgorithm::TabooSearch::DirectedPertubation(int eta)
@@ -226,6 +229,7 @@ namespace ecnGraph {
 			} while (e.graph->Colors[v] == e.graph->Colors[u]);
 			std::swap(e.graph->Colors[v], e.graph->Colors[u]);
 		}
+		RefreshStructures();
 	}
 
 	void BitsColoringAlgorithm::TabooSearch::PertubationOperator(int eta1, int eta2, float p)
@@ -265,6 +269,7 @@ namespace ecnGraph {
 		}
 
 		e.graph->Colors = sb;
+		RefreshStructures();
 		return fs;
 	}
 	
@@ -282,7 +287,7 @@ namespace ecnGraph {
 		int fs = EvaluationFunction();
 
 		while (d < beta && fs > 0) {
-			PertubationOperator();
+			PertubationOperator(e.ETA1, e.ETA2*e.graph->Size(), e.P);
 			int fsp = Search(alpha);
 
 			if (fsp < fs) {
@@ -292,6 +297,7 @@ namespace ecnGraph {
 			}
 			else {
 				e.graph->Colors = s;
+				RefreshStructures();
 				d++;
 			}
 		}
@@ -300,7 +306,7 @@ namespace ecnGraph {
 		return fs;
 	}
 
-	void BitsColoringAlgorithm::TabooSearch::Refresh()
+	void BitsColoringAlgorithm::TabooSearch::RefreshStructures()
 	{
 		ConstructEvaluationMatrix();
 		InitializeTabooList();

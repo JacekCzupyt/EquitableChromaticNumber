@@ -10,6 +10,10 @@ namespace ecnGraph {
 
 		virtual int Color(ColoredGraph& _graph) override;
 
+		const int ETA1 = 5 * 10e3;
+		const float ETA2 = 0.3f;
+		const float P = 0.7f;
+
 	private:
 		double duration;
 		ColoredGraph * graph;
@@ -35,7 +39,7 @@ namespace ecnGraph {
 			/// /// <returns>The evaluation of the provided solution</returns>
 			int IteratedSearch(int k, int beta, int alpha);
 
-			void Refresh();
+			void RefreshStructures();
 		private:
 			int colorCount;
 
