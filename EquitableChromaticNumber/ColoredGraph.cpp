@@ -35,11 +35,12 @@ namespace ecnGraph {
 	/// </summary>
 	int ColoredGraph::GetColorCount() const
 	{
-		int mx = 0;
+		int mx = -1;
 		for (int i = 0; i < Size(); i++) {
 			if (Colors[i] != -1)
 				mx = std::max(mx, Colors[i]);
 		}
+		return mx + 1;
 	}
 
 	/// O(|V|) time
