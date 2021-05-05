@@ -40,6 +40,20 @@ namespace ecnGraph {
 		}
 		return hist;
 	}
+
+	int BitsColoringAlgorithm::TabooSearch::EvaluationFunction(const std::vector<int>& colors)
+	{
+		int res = 0;
+		for (int i = 0; i < e.graph->Size(); i++) {
+			res += evaluationMatrix[i][colors[i]];
+		}
+		return res/2;
+	}
+
+	int BitsColoringAlgorithm::TabooSearch::EvaluationFunction()
+	{
+		return EvaluationFunction(e.graph->Colors);
+	}
 	
 	BitsColoringAlgorithm::TabooSearch::move BitsColoringAlgorithm::TabooSearch::ExploreNeighborhood(int mt)
 	{

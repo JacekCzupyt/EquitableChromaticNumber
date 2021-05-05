@@ -32,6 +32,8 @@ namespace ecnGraph {
 			std::vector<std::vector<int>> ConstructEvaluationMatrix();
 			std::vector<std::vector<int>> InitializeTabooList();
 			std::vector<int> InitializeColorHistogram();
+			int EvaluationFunction(const std::vector<int>& colors);
+			int EvaluationFunction();
 
 			/// <summary>
 			/// Explores neighborhood of current coloring, does not change the graph
