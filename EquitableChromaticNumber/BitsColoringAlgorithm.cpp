@@ -16,8 +16,7 @@ namespace ecnGraph {
 
 	std::vector<std::vector<int>> BitsColoringAlgorithm::TabooSearch::ConstructEvaluationMatrix()
 	{
-		// TODO: replace GetColorCount with preexisting variable
-		auto matrix = std::vector<std::vector<int>>(e.graph->Size(), std::vector<int>(e.graph->GetColorCount(), 0));
+		auto matrix = std::vector<std::vector<int>>(e.graph->Size(), std::vector<int>(colorCount, 0));
 		for (int i = 0; i < e.graph->Size(); i++) {
 			for (int j : e.graph->GetNeighbours(i)) {
 				matrix[i][j]++;
@@ -28,14 +27,12 @@ namespace ecnGraph {
 
 	std::vector<std::vector<int>> BitsColoringAlgorithm::TabooSearch::InitializeTabooList()
 	{
-		// TODO: replace GetColorCount with preexisting variable
-		return std::vector<std::vector<int>>(e.graph->Size(), std::vector<int>(e.graph->GetColorCount(), INT_MIN));
+		return std::vector<std::vector<int>>(e.graph->Size(), std::vector<int>(colorCount, INT_MIN));
 	}
 
 	std::vector<int> BitsColoringAlgorithm::TabooSearch::InitializeColorHistogram()
 	{
-		// TODO: replace GetColorCount with preexisting variable
-		auto hist = std::vector<int>(e.graph->GetColorCount(), 0);
+		auto hist = std::vector<int>(colorCount, 0);
 		for (int i = 0; i < e.graph->Size(); i++) {
 			hist[e.graph->Colors[i]]++;
 		}
@@ -84,8 +81,7 @@ namespace ecnGraph {
 	
 	BitsColoringAlgorithm::TabooSearch::move BitsColoringAlgorithm::TabooSearch::ExploreNeighborhood(int mt)
 	{
-		// TODO: replace GetColorCount with preexisting variable
-		int colorCount = e.graph->GetColorCount();
+		int colorCount = colorCount;
 		int lowIndex = e.graph->Size() / colorCount;
 		int highIndex = lowIndex + (e.graph->Size() % colorCount == 0);
 
