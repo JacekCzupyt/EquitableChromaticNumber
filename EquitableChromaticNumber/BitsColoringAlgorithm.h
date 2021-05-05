@@ -13,6 +13,18 @@ namespace ecnGraph {
 	private:
 		double duration;
 		ColoredGraph * graph;
+
+		std::vector<std::vector<int>> tabooList;
+
+		std::vector<std::vector<int>> ConstructEvaluationMatrix();
+		
+
+		class ExploreNeighborhood {
+		public:
+			void Explore();
+			ExploreNeighborhood();
+			std::vector<std::vector<int>> evaluationMatrix;
+		};
 	};
 }
 
