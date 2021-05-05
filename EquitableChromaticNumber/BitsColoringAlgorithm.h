@@ -28,7 +28,7 @@ namespace ecnGraph {
 
 			std::vector<std::vector<int>> ConstructEvaluationMatrix();
 			std::vector<std::vector<int>> InitializeTabooList();
-			void ExploreNeighborhood();
+			void ExploreNeighborhood(int mt);
 		};
 	};
 }
