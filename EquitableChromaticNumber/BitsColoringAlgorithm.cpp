@@ -153,6 +153,52 @@ namespace ecnGraph {
 
 		return BestMoves[rand() % BestMoves.size()];
 	}
+
+	void BitsColoringAlgorithm::TabooSearch::InitializeKColoring()
+	{
+		std::vector<int>& colors = e.graph->Colors;
+
+		// Initialize and randomize vertex list (Fisher–Yates shuffle)
+		std::vector<int> vert(e.graph->Size());
+		for (int i = 0; i < e.graph->Size(); i++) {
+			vert[i] = i;
+			colors[i] = -1;
+		}
+			
+		for (int i = e.graph->Size() - 1; i > 0; i--)
+			std::swap(vert[i], vert[rand() % (i + 1)]);
+
+		//color initial k verticies (k - color count)
+		int i;
+		for (i = 0; i < colorCount; i++) {
+			colors[vert[i]] = i;
+		}
+
+		//assign colors to the remaining verticies
+		// TODO: test, I'd be surprised if this does not have bugs
+		std::vector<int> minSet;
+		minSet.reserve(e.graph->Size() - i);
+		int minVal = INT_MAX;
+		for (; i < e.graph->Size(); i++) {
+			minSet.clear();
+			minVal = INT_MAX;
+			int c = i % colorCount;
+			for (int v = 0; v < e.graph->Size(); v++) {
+				if (colors[v] != -1) {
+					int val = std::count_if(e.graph->GetNeighbours(v).begin(), e.graph->GetNeighbours(v).end(), [colors, c](int u) {colors[u] == c; });
+					if (val < minVal) {
+						minSet.clear();
+						minVal = val;
+					}
+					if (val == minVal) {
+						minSet.push_back(v);
+					}
+						
+				}
+			}
+			colors[minSet[rand() % minSet.size()]] = c;
+		}
+	}
 	
 	int BitsColoringAlgorithm::TabooSearch::Search(int alpha)
 	{
