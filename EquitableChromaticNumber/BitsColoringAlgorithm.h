@@ -19,7 +19,13 @@ namespace ecnGraph {
 		public:
 			TabooSearch(BitsColoringAlgorithm& _e);
 			
-			
+			/// <summary>
+			/// Runs a tabu search on the current coloring of the graph
+			/// </summary>
+			/// <param name="alpha">Depth of the tabu serch</param>
+			void Search(int alpha);
+
+			void Refresh();
 		private:
 
 			struct move { int df, v1, v2, c1, c2; };
@@ -47,13 +53,6 @@ namespace ecnGraph {
 			/// <param name="mt">Maxiumum time allowed by tabu search (t - tt)</param>
 			/// <returns>The best avalible move</returns>
 			move ExploreNeighborhood(int mt);
-
-			/// <summary>
-			/// Runs a tabu search on the current coloring of the graph
-			/// </summary>
-			/// <param name="alpha">Depth of the tabu serch</param>
-			void Search(int alpha);
-			
 		};
 	};
 }

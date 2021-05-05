@@ -166,7 +166,7 @@ namespace ecnGraph {
 			//best move
 			move bm = ExploreNeighborhood(i-10); // TODO: improve tabu tenure
 			
-			ExecuteMove(bm);
+			ExecuteMove(bm, i);
 
 			if (bm.df < 0) {
 				sb = e.graph->Colors;
@@ -179,6 +179,13 @@ namespace ecnGraph {
 		}
 
 		e.graph->Colors = sb;
+	}
+	
+	void BitsColoringAlgorithm::TabooSearch::Refresh()
+	{
+		ConstructEvaluationMatrix();
+		InitializeTabooList();
+		InitializeColorHistogram();
 	}
 }
 
