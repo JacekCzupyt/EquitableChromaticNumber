@@ -218,30 +218,13 @@ namespace ecnGraph {
 	void BitsColoringAlgorithm::TabooSearch::RandomPertubation(int eta)
 	{
 		//random pertubations
-		//For each vertex in graph
-		for (int v = 0; v < e.graph->Size(); v++) {
-			int vc = e.graph->Colors[v]; //current vertex color
-			//If conflict
-			if (evaluationMatrix[v][vc] > 0) {
-				//For each other vertex in graph
-				for (int u = 0; u < e.graph->Size(); u++) {
-					int uc = e.graph->Colors[u]; //current vertex color
-					//If not same vertex
-					if (v != u) {
-						//delta f
-						int df = (evaluationMatrix[v][uc] - evaluationMatrix[v][vc]) + (evaluationMatrix[u][vc] - evaluationMatrix[u][uc]) - 2 * (e.graph->IsEdge(v, u));
-						//if best
-						if (df < min_df) {
-							min_df = df;
-							BestMoves.clear();
-							BestMoves.push_back(move{ df, v, uc, u, vc });
-						}// or good and allowed by taboo list
-						else if (df == min_df && tabooList[v][uc] < mt && tabooList[u][vc] < mt) {
-							BestMoves.push_back(move{ df, v, uc, u, vc });
-						}
-					}
-				}
-			}
+		for (int i = 0; i < eta; i++) {
+			int v, u;
+			do {
+				v = rand() % e.graph->Size();
+				u = rand() % e.graph->Size();
+			} while (e.graph->Colors[v] == e.graph->Colors[u]);
+			std::swap(e.graph->Colors[v], e.graph->Colors[u]);
 		}
 	}
 
