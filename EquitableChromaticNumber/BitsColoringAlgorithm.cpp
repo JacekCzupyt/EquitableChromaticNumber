@@ -1,4 +1,5 @@
 #include "BitsColoringAlgorithm.h"
+#include <random>
 
 namespace ecnGraph {
 	BitsColoringAlgorithm::BitsColoringAlgorithm(double _duration)
@@ -88,10 +89,12 @@ namespace ecnGraph {
 		int lowIndex = e.graph->Size() / colorCount;
 		int highIndex = lowIndex + (e.graph->Size() % colorCount == 0);
 
-
+		std::vector<move> BestMoves;
+		BestMoves.reserve(e.graph->Size() * (e.graph->Size() + colorCount));
+		BestMoves.push_back(move{ 0, 0, e.graph->Colors[0], -1, -1 });
 		int min_df = 0;
-		int v1 = 0, c1 = e.graph->Colors[0];
-		int v2 = -1, c2 = -1;
+		//int v1 = 0, c1 = e.graph->Colors[0];
+		//int v2 = -1, c2 = -1;
 		
 		//N1
 
@@ -108,12 +111,14 @@ namespace ecnGraph {
 						if (colorHistogram[c] == lowIndex) {
 							//delta f
 							int df = evaluationMatrix[v][c] - evaluationMatrix[v][vc];
-							//if best or good and allowed by taboo list 
-							if (df < min_df || (tabooList[v][c] < mt && df == min_df)) {
-								//replace best values
+							//if best 
+							if (df < min_df) {
 								min_df = df;
-								v1 = v;
-								c1 = c;
+								BestMoves.clear();
+								BestMoves.push_back(move{ df, v, c, -1, -1 });
+							}// or good and allowed by taboo list
+							else if (tabooList[v][c] < mt && df == min_df) {
+								BestMoves.push_back(move{ df, v, c, -1, -1 });
 							}
 						}
 					}
@@ -136,21 +141,21 @@ namespace ecnGraph {
 					if (v != u) {
 						//delta f
 						int df = (evaluationMatrix[v][uc] - evaluationMatrix[v][vc])+(evaluationMatrix[u][vc] - evaluationMatrix[u][uc]) - 2 * (e.graph->IsEdge(v, u));
-						//if best or good and allowed by taboo list and 
-						if (df <= min_df || (df == min_df && tabooList[v][uc] < mt && tabooList[u][vc] < mt)) {
-							//replace best values
+						//if best
+						if (df < min_df) {
 							min_df = df;
-							v1 = v;
-							v2 = u;
-							c1 = uc;
-							c2 = vc;
+							BestMoves.clear();
+							BestMoves.push_back(move{ df, v, uc, u, vc });
+						}// or good and allowed by taboo list
+						else if (df == min_df && tabooList[v][uc] < mt && tabooList[u][vc] < mt) {
+							BestMoves.push_back(move{ df, v, uc, u, vc });
 						}
 					}
 				}
 			}
 		}
 
-		return move{ min_df, v1, v2, c1, c2 };
+		return BestMoves[rand() % BestMoves.size()];
 	}
 	
 	void BitsColoringAlgorithm::TabooSearch::Search(int alpha)
