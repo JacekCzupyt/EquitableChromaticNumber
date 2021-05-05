@@ -21,6 +21,8 @@ namespace ecnGraph {
 			
 			
 		private:
+
+			struct move { int df, v1, v2, c1, c2 };
 			
 			BitsColoringAlgorithm& e;
 			std::vector<std::vector<int>> evaluationMatrix;
@@ -30,7 +32,9 @@ namespace ecnGraph {
 			std::vector<std::vector<int>> ConstructEvaluationMatrix();
 			std::vector<std::vector<int>> InitializeTabooList();
 			std::vector<int> InitializeColorHistogram();
-			void ExploreNeighborhood(int mt);
+			move ExploreNeighborhood(int mt);
+
+			
 		};
 	};
 }
