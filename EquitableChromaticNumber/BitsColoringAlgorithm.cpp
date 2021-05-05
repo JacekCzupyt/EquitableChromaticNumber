@@ -186,6 +186,11 @@ namespace ecnGraph {
 		e.graph->Colors = sb;
 	}
 	
+	void BitsColoringAlgorithm::TabooSearch::IteratedSearch(int k, int beta, int alpha)
+	{
+		colorCount = k;
+	}
+
 	void BitsColoringAlgorithm::TabooSearch::Refresh()
 	{
 		ConstructEvaluationMatrix();

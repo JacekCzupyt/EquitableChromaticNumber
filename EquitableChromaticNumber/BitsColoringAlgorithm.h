@@ -25,8 +25,17 @@ namespace ecnGraph {
 			/// <param name="alpha">Depth of the tabu serch</param>
 			void Search(int alpha);
 
+			/// <summary>
+			/// Runs an iterated tabu search on the provided graph with the specified color count
+			/// </summary>
+			/// <param name="k">Color count</param>
+			/// <param name="beta">Depth of the iterated tabu serch</param>
+			/// <param name="alpha">Depth of the tabu serch</param>
+			void IteratedSearch(int k, int beta, int alpha);
+
 			void Refresh();
 		private:
+			int colorCount;
 
 			struct move { int df, v1, v2, c1, c2; };
 			
