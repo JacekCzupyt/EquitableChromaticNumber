@@ -1,5 +1,6 @@
 #include "BitsColoringAlgorithm.h"
 #include <random>
+#include <chrono>
 
 namespace ecnGraph {
 
@@ -10,10 +11,30 @@ namespace ecnGraph {
 
 	int ecnGraph::BitsColoringAlgorithm::Color(ColoredGraph& _graph)
 	{
-		return 0;
+		TabooSearch taboo(*this);
+		int BestColorCount = taboo.InitialBinarySearch(Alpha0);
+		std::vector<int> BestColoring = graph->Colors;
+
+		int colorCount = BestColorCount;
+		auto startTime = std::chrono::steady_clock::now();
+		while (std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - startTime).count() < duration * 10e6) {
+			
+			if (colorCount <= BestColorCount - m || colorCount == 2)
+				colorCount = BestColorCount - 1;
+			else
+				colorCount--;
+
+			if (taboo.IteratedSearch(colorCount, Beta, Alpha) == 0) {
+				BestColorCount = colorCount;
+				BestColoring = graph->Colors;
+			}
+		}
+
+		graph->Colors = BestColoring;
+		return BestColorCount;
 	}
 
-	void BitsColoringAlgorithm::TabooSearch::InitialBinarySearch(int alpha)
+	int BitsColoringAlgorithm::TabooSearch::InitialBinarySearch(int alpha)
 	{
 		int l = 0, u = e.graph->Size();
 		std::vector<int> BestColoring;
@@ -32,8 +53,8 @@ namespace ecnGraph {
 				l = k;
 		}
 
-		colorCount = BestColorcount;
 		e.graph->Colors = BestColoring;
+		return BestColorcount;
 	}
 
 	BitsColoringAlgorithm::TabooSearch::TabooSearch(BitsColoringAlgorithm& _e) : e(_e) {}

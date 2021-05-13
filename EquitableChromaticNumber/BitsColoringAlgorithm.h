@@ -13,6 +13,10 @@ namespace ecnGraph {
 		const int ETA1 = 5 * 10e3;
 		const float ETA2 = 0.3f;
 		const float P = 0.7f;
+		const int Alpha0 = 100;
+		const int Alpha = 10e5;
+		const int m = 4;
+		const int Beta = 30;
 
 	private:
 		double duration;
@@ -36,18 +40,20 @@ namespace ecnGraph {
 			/// <param name="k">Color count</param>
 			/// <param name="beta">Depth of the iterated tabu serch</param>
 			/// <param name="alpha">Depth of the tabu serch</param>
-			/// /// <returns>The evaluation of the provided solution</returns>
+			/// <returns>The evaluation of the provided solution</returns>
 			int IteratedSearch(int k, int beta, int alpha);
 
 			/// <summary>
 			/// Preforms a binary search to find an appropiate inital color count
 			/// </summary>
 			/// <param name="alpha">Depth of the tabu search</param>
-			void InitialBinarySearch(int alpha);
+			/// <returns>Appropiate inital color count</returns>
+			int InitialBinarySearch(int alpha);
 
-			void RefreshStructures();
 		private:
 			int colorCount;
+
+			void RefreshStructures();
 
 			struct move { int df, v1, v2, c1, c2; };
 			
