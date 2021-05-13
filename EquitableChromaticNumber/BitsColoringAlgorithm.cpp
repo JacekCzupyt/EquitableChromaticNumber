@@ -13,6 +13,29 @@ namespace ecnGraph {
 		return 0;
 	}
 
+	void BitsColoringAlgorithm::TabooSearch::InitialBinarySearch(int alpha)
+	{
+		int l = 0, u = e.graph->Size();
+		std::vector<int> BestColoring;
+		int BestColorcount;
+
+		while (u > l + 1) {
+			int k = (u + l) / 2;
+			colorCount = k;
+			InitializeKColoring();
+			if (Search(alpha) == 0) {
+				BestColorcount = k;
+				BestColoring = e.graph->Colors;
+				u = k;
+			}
+			else
+				l = k;
+		}
+
+		colorCount = BestColorcount;
+		e.graph->Colors = BestColoring;
+	}
+
 	BitsColoringAlgorithm::TabooSearch::TabooSearch(BitsColoringAlgorithm& _e) : e(_e) {}
 
 	std::vector<std::vector<int>> BitsColoringAlgorithm::TabooSearch::ConstructEvaluationMatrix()

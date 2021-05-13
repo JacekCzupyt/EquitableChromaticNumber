@@ -39,6 +39,12 @@ namespace ecnGraph {
 			/// /// <returns>The evaluation of the provided solution</returns>
 			int IteratedSearch(int k, int beta, int alpha);
 
+			/// <summary>
+			/// Preforms a binary search to find an appropiate inital color count
+			/// </summary>
+			/// <param name="alpha">Depth of the tabu search</param>
+			void InitialBinarySearch(int alpha);
+
 			void RefreshStructures();
 		private:
 			int colorCount;
