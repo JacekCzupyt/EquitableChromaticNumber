@@ -10,17 +10,17 @@ namespace ecnGraph {
 
 		virtual int Color(ColoredGraph& _graph) override;
 
-		const int ETA1 = 5 * 10e3;
+		const int ETA1 = 5 * (int)10e3;
 		const float ETA2 = 0.3f;
 		const float P = 0.7f;
 		const int Alpha0 = 100;
-		const int Alpha = 10e5;
+		const int Alpha = (int)10e5;
 		const int m = 4;
 		const int Beta = 30;
 
 	private:
 		double duration;
-		ColoredGraph * graph;
+		ColoredGraph * graph = nullptr;
 		
 
 		class TabooSearch {

@@ -40,7 +40,7 @@ namespace ecnGraph {
 	{
 		int l = 0, u = e.graph->Size();
 		std::vector<int> BestColoring;
-		int BestColorcount;
+		int BestColorcount = u;
 
 		while (u > l + 1) {
 			int k = (u + l) / 2;
@@ -59,7 +59,7 @@ namespace ecnGraph {
 		return BestColorcount;
 	}
 
-	BitsColoringAlgorithm::TabooSearch::TabooSearch(BitsColoringAlgorithm& _e) : e(_e) {}
+	BitsColoringAlgorithm::TabooSearch::TabooSearch(BitsColoringAlgorithm& _e) : e(_e), colorCount(-1) {}
 
 	std::vector<std::vector<int>> BitsColoringAlgorithm::TabooSearch::ConstructEvaluationMatrix()
 	{
@@ -128,7 +128,6 @@ namespace ecnGraph {
 	
 	BitsColoringAlgorithm::TabooSearch::move BitsColoringAlgorithm::TabooSearch::ExploreNeighborhood(int mt)
 	{
-		int colorCount = colorCount;
 		int lowIndex = e.graph->Size() / colorCount;
 		int highIndex = lowIndex + (e.graph->Size() % colorCount == 0);
 
@@ -232,7 +231,7 @@ namespace ecnGraph {
 			int c = i % colorCount;
 			for (int v = 0; v < e.graph->Size(); v++) {
 				if (colors[v] != -1) {
-					int val = std::count_if(e.graph->GetNeighbours(v).begin(), e.graph->GetNeighbours(v).end(), [colors, c](int u) {colors[u] == c; });
+					int val = std::count_if(e.graph->GetNeighbours(v).begin(), e.graph->GetNeighbours(v).end(), [colors, c](int u) {return colors[u] == c; });
 					if (val < minVal) {
 						minSet.clear();
 						minVal = val;
@@ -329,7 +328,7 @@ namespace ecnGraph {
 		int fs = EvaluationFunction();
 
 		while (d < beta && fs > 0) {
-			PertubationOperator(e.ETA1, e.ETA2*e.graph->Size(), e.P, fs);
+			PertubationOperator(e.ETA1, (int)(e.ETA2*e.graph->Size()), e.P, fs);
 			int fsp = Search(alpha);
 
 			if (fsp < fs) {
