@@ -14,7 +14,7 @@ namespace EquitableChromaticNumberUnitTests {
 		TEST_METHOD(IsColoredSmallGraphs) {
 			BitsColoringAlgorithm Bits(0.01f);
 			srand(0);
-			for (int i = 0; i < 100; i++) {
+			for (int i = 0; i < 10; i++) {
 				ColoredGraph g = GenerateRandomGraph(5 + i % 10, (double)rand()/RAND_MAX);
 				Bits.Color(g);
 				Assert::IsTrue(g.IsColored());

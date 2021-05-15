@@ -46,11 +46,14 @@ namespace ecnGraph {
 
 	int BitsColoringAlgorithm::TabooSearch::InitialBinarySearch(int alpha)
 	{
-		int l = 0, u = e.graph->Size();
+		// Algorithm presented in the paper suggested u = |V|, which I believe is wrong
+		int l = 0, u = e.graph->Size() + 1;
 		std::vector<int> BestColoring;
+		
 		int BestColorcount = u;
 
-		while (u > l + 1) {
+		// Algorithm presented in the paper suggested u > l + 1, which I believe is wrong
+		while (u > l) {
 			int k = (u + l) / 2;
 			colorCount = k;
 			InitializeKColoring();
@@ -60,7 +63,8 @@ namespace ecnGraph {
 				u = k;
 			}
 			else
-				l = k;
+				// Algorithm presented in the paper suggested l = k, which I believe is wrong
+				l = k + 1;
 		}
 
 		e.graph->Colors = BestColoring;
