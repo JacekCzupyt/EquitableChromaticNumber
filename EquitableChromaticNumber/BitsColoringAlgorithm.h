@@ -55,7 +55,7 @@ namespace ecnGraph {
 
 			void RefreshStructures();
 
-			struct move { int df, v1, v2, c1, c2; };
+			struct move { int df, v1, c1, v2, c2; };
 			
 			BitsColoringAlgorithm& e;
 			std::vector<std::vector<int>> evaluationMatrix;
