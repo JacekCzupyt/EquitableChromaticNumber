@@ -86,8 +86,8 @@ namespace ecnGraph {
 			/// </summary>
 			void InitializeKColoring();
 
-			void PertubationOperator(int eta1, int eta2, float p);
-			void DirectedPertubation(int eta1);
+			void PertubationOperator(int eta1, int eta2, float p, int fs);
+			void DirectedPertubation(int eta1, int fs);
 			void RandomPertubation(int eta1);
 		};
 	};

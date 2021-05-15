@@ -247,12 +247,9 @@ namespace ecnGraph {
 		RefreshStructures();
 	}
 
-	void BitsColoringAlgorithm::TabooSearch::DirectedPertubation(int eta)
+	void BitsColoringAlgorithm::TabooSearch::DirectedPertubation(int eta, int fs)
 	{
 		//directed pertubations
-		//evaluation function output of the current and best solution
-		// TODO: Get precomputed evaluation function?
-		int fs = EvaluationFunction();
 
 		for (int i = 0; i < eta; i++) {
 			//best move
@@ -276,13 +273,13 @@ namespace ecnGraph {
 		RefreshStructures();
 	}
 
-	void BitsColoringAlgorithm::TabooSearch::PertubationOperator(int eta1, int eta2, float p)
+	void BitsColoringAlgorithm::TabooSearch::PertubationOperator(int eta1, int eta2, float p, int fs)
 	{
 		if ((float)rand() / RAND_MAX < p) {
 			RandomPertubation(eta2);
 		}
 		else {
-			DirectedPertubation(eta1);
+			DirectedPertubation(eta1, fs);
 		}
 	}
 	
@@ -331,7 +328,7 @@ namespace ecnGraph {
 		int fs = EvaluationFunction();
 
 		while (d < beta && fs > 0) {
-			PertubationOperator(e.ETA1, e.ETA2*e.graph->Size(), e.P);
+			PertubationOperator(e.ETA1, e.ETA2*e.graph->Size(), e.P, fs);
 			int fsp = Search(alpha);
 
 			if (fsp < fs) {
