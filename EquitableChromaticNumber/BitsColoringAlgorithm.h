@@ -14,9 +14,9 @@ namespace ecnGraph {
 		const float ETA2 = 0.3f;
 		const float P = 0.7f;
 		const int Alpha0 = 100;
-		const int Alpha = (int)10e5;
+		const int Alpha = (int)10e1;
 		const int m = 4;
-		const int Beta = 30;
+		const int Beta = 10;
 
 	private:
 		double duration;
@@ -53,6 +53,7 @@ namespace ecnGraph {
 		private:
 			int colorCount;
 
+			void ConstructStructures();
 			void RefreshStructures();
 
 			struct move { int df, v1, c1, v2, c2; };
@@ -62,9 +63,9 @@ namespace ecnGraph {
 			std::vector<std::vector<int>> tabooList;
 			std::vector<int> colorHistogram;
 
-			std::vector<std::vector<int>> ConstructEvaluationMatrix();
-			std::vector<std::vector<int>> InitializeTabooList();
-			std::vector<int> InitializeColorHistogram();
+			void InitializeEvaluationMatrix();
+			void InitializeTabooList();
+			void InitializeColorHistogram();
 			int EvaluationFunction(const std::vector<int>& colors);
 			int EvaluationFunction();
 

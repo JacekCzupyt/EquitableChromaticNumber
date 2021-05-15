@@ -27,8 +27,13 @@ namespace ecnGraph {
 
 		int colorCount = BestColorCount;
 		auto startTime = std::chrono::steady_clock::now();
+
+		int count = 0;
+
 		while (std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - startTime).count() < duration * 10e6) {
 			
+			count++;
+
 			if (colorCount <= BestColorCount - m || colorCount == 2)
 				colorCount = BestColorCount - 1;
 			else
@@ -41,7 +46,7 @@ namespace ecnGraph {
 		}
 
 		graph->Colors = BestColoring;
-		return BestColorCount;
+		return count;// TODO: change back to BestColorCount
 	}
 
 	int BitsColoringAlgorithm::TabooSearch::InitialBinarySearch(int alpha)
@@ -71,31 +76,39 @@ namespace ecnGraph {
 		return BestColorcount;
 	}
 
-	BitsColoringAlgorithm::TabooSearch::TabooSearch(BitsColoringAlgorithm& _e) : e(_e), colorCount(-1) {}
+	BitsColoringAlgorithm::TabooSearch::TabooSearch(BitsColoringAlgorithm& _e) : e(_e), colorCount(-1) {
+		ConstructStructures();
+	}
 
-	std::vector<std::vector<int>> BitsColoringAlgorithm::TabooSearch::ConstructEvaluationMatrix()
+	void BitsColoringAlgorithm::TabooSearch::InitializeEvaluationMatrix()
 	{
-		auto matrix = std::vector<std::vector<int>>(e.graph->Size(), std::vector<int>(colorCount, 0));
 		for (int i = 0; i < e.graph->Size(); i++) {
+			for (int c = 0; c < colorCount; c++) {
+				evaluationMatrix[i][c] = 0;
+			}
 			for (int j : e.graph->GetNeighbours(i)) {
-				matrix[i][e.graph->Colors[j]]++;
+				evaluationMatrix[i][e.graph->Colors[j]]++;
 			}
 		}
-		return matrix;
 	}
 
-	std::vector<std::vector<int>> BitsColoringAlgorithm::TabooSearch::InitializeTabooList()
+	void BitsColoringAlgorithm::TabooSearch::InitializeTabooList()
 	{
-		return std::vector<std::vector<int>>(e.graph->Size(), std::vector<int>(colorCount, INT_MIN));
-	}
-
-	std::vector<int> BitsColoringAlgorithm::TabooSearch::InitializeColorHistogram()
-	{
-		auto hist = std::vector<int>(colorCount, 0);
 		for (int i = 0; i < e.graph->Size(); i++) {
-			hist[e.graph->Colors[i]]++;
+			for (int c = 0; c < colorCount; c++) {
+				tabooList[i][c] = INT_MIN;
+			}
 		}
-		return hist;
+	}
+
+	void BitsColoringAlgorithm::TabooSearch::InitializeColorHistogram()
+	{
+		for (int c = 0; c < colorCount; c++) {
+			colorHistogram[c] = 0;
+		}
+		for (int i = 0; i < e.graph->Size(); i++) {
+			colorHistogram[e.graph->Colors[i]]++;
+		}
 	}
 
 	int BitsColoringAlgorithm::TabooSearch::EvaluationFunction(const std::vector<int>& colors)
@@ -314,7 +327,7 @@ namespace ecnGraph {
 			if (bm.df < 0) {
 				sb = e.graph->Colors;
 				d = 0;
-				fs -= bm.df;
+				fs += bm.df;
 			}
 			else {
 				d++;
@@ -359,11 +372,18 @@ namespace ecnGraph {
 		return fs;
 	}
 
+	void BitsColoringAlgorithm::TabooSearch::ConstructStructures()
+	{
+		evaluationMatrix = std::vector<std::vector<int>>(e.graph->Size(), std::vector<int>(e.graph->Size(), 0));
+		tabooList = std::vector<std::vector<int>>(e.graph->Size(), std::vector<int>(e.graph->Size(), INT_MIN));
+		colorHistogram = std::vector<int>(e.graph->Size(), 0);
+	}
+
 	void BitsColoringAlgorithm::TabooSearch::RefreshStructures()
 	{
-		evaluationMatrix = ConstructEvaluationMatrix();
-		tabooList = InitializeTabooList();
-		colorHistogram = InitializeColorHistogram();
+		InitializeEvaluationMatrix();
+		InitializeTabooList();
+		InitializeColorHistogram();
 	}
 }
 
