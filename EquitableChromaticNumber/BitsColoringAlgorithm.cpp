@@ -74,7 +74,7 @@ namespace ecnGraph {
 		auto matrix = std::vector<std::vector<int>>(e.graph->Size(), std::vector<int>(colorCount, 0));
 		for (int i = 0; i < e.graph->Size(); i++) {
 			for (int j : e.graph->GetNeighbours(i)) {
-				matrix[i][j]++;
+				matrix[i][e.graph->Colors[j]]++;
 			}
 		}
 		return matrix;
