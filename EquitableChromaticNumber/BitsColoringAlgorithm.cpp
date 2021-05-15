@@ -357,9 +357,9 @@ namespace ecnGraph {
 
 	void BitsColoringAlgorithm::TabooSearch::RefreshStructures()
 	{
-		ConstructEvaluationMatrix();
-		InitializeTabooList();
-		InitializeColorHistogram();
+		evaluationMatrix = ConstructEvaluationMatrix();
+		tabooList = InitializeTabooList();
+		colorHistogram = InitializeColorHistogram();
 	}
 }
 
