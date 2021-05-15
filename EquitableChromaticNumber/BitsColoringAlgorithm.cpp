@@ -290,7 +290,6 @@ namespace ecnGraph {
 		//iterations since sb updated
 		int d = 0;
 		//evaluation function output of the current and best solution
-		// TODO: Get precomputed evaluation function?
 		int fs = EvaluationFunction();
 
 		for (int i = 0; d < alpha && fs>0; i++) {
