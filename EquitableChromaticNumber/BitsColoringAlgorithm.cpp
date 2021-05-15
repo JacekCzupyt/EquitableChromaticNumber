@@ -13,6 +13,14 @@ namespace ecnGraph {
 	{
 		graph = &_graph;
 
+		//exception for a graph with no edges
+		if (graph->Deg() == 0) {
+			for (int i = 0; i < graph->Size(); i++) {
+				graph->Colors[i] = 0;
+			}
+			return 1;
+		}
+
 		TabooSearch taboo(*this);
 		int BestColorCount = taboo.InitialBinarySearch(Alpha0);
 		std::vector<int> BestColoring = graph->Colors;
@@ -230,7 +238,7 @@ namespace ecnGraph {
 			minVal = INT_MAX;
 			int c = i % colorCount;
 			for (int v = 0; v < e.graph->Size(); v++) {
-				if (colors[v] != -1) {
+				if (colors[v] == -1) {
 					int val = std::count_if(e.graph->GetNeighbours(v).begin(), e.graph->GetNeighbours(v).end(), [colors, c](int u) {return colors[u] == c; });
 					if (val < minVal) {
 						minSet.clear();

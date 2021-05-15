@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../EquitableChromaticNumber/BitsColoringAlgorithm.h"
+#include "../EquitableChromaticNumber/BitsColoringAlgorithm.cpp"
 #include "../EquitableChromaticNumber/ColoredGraph.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
