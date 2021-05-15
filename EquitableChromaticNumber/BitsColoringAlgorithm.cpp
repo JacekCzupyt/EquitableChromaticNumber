@@ -32,6 +32,9 @@ namespace ecnGraph {
 
 		while (std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - startTime).count() < duration * 10e6) {
 			
+			if (BestColorCount == 2)
+				break;
+
 			count++;
 
 			if (colorCount <= BestColorCount - m || colorCount == 2)
@@ -160,8 +163,6 @@ namespace ecnGraph {
 		BestMoves.reserve(e.graph->Size() * (e.graph->Size() + colorCount));
 		BestMoves.push_back(move{ 0, 0, e.graph->Colors[0], -1, -1 });
 		int min_df = 0;
-		//int v1 = 0, c1 = e.graph->Colors[0];
-		//int v2 = -1, c2 = -1;
 		
 		//N1
 

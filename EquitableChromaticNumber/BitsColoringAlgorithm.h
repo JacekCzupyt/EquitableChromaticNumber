@@ -10,7 +10,7 @@ namespace ecnGraph {
 
 		virtual int Color(ColoredGraph& _graph) override;
 
-		const int ETA1 = 5 * (int)10e3;
+		const int ETA1 = 5 * (int)10e1;
 		const float ETA2 = 0.3f;
 		const float P = 0.7f;
 		const int Alpha0 = 100;
