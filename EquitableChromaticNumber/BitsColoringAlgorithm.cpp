@@ -11,6 +11,8 @@ namespace ecnGraph {
 
 	int ecnGraph::BitsColoringAlgorithm::Color(ColoredGraph& _graph)
 	{
+		graph = &_graph;
+
 		TabooSearch taboo(*this);
 		int BestColorCount = taboo.InitialBinarySearch(Alpha0);
 		std::vector<int> BestColoring = graph->Colors;
