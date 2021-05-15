@@ -12,7 +12,7 @@ namespace EquitableChromaticNumberUnitTests {
 	TEST_CLASS(BitsColoringAlgorithmUnitTests) {
 	public:
 		TEST_METHOD(IsColoredSmallGraphs) {
-			BitsColoringAlgorithm Bits(0.1f);
+			BitsColoringAlgorithm Bits(1.0f);
 			srand(0);
 			for (int i = 0; i < 10; i++) {
 				ColoredGraph g = GenerateRandomGraph(5 + i % 10, (double)rand()/RAND_MAX);

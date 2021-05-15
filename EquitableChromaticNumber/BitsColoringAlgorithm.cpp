@@ -30,7 +30,7 @@ namespace ecnGraph {
 
 		int count = 0;
 
-		while (std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - startTime).count() < duration * 10e6) {
+		while (std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - startTime).count() < duration * 1e6) {
 			
 			if (BestColorCount == 2)
 				break;
