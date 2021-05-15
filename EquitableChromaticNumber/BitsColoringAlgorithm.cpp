@@ -187,8 +187,8 @@ namespace ecnGraph {
 				//For each other vertex in graph
 				for (int u = 0; u < e.graph->Size(); u++) {
 					int uc = e.graph->Colors[u]; //current vertex color
-					//If not same vertex
-					if (v != u) {
+					//If not same color (includes if not same vertex)
+					if (vc != uc) {
 						//delta f
 						int df = (evaluationMatrix[v][uc] - evaluationMatrix[v][vc])+(evaluationMatrix[u][vc] - evaluationMatrix[u][uc]) - 2 * (e.graph->IsEdge(v, u));
 						//if best
