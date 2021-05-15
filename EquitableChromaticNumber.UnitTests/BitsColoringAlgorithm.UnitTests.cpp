@@ -17,9 +17,18 @@ namespace EquitableChromaticNumberUnitTests {
 			for (int i = 0; i < 10; i++) {
 				ColoredGraph g = GenerateRandomGraph(5 + i % 10, (double)rand()/RAND_MAX);
 				int res = Bits.Color(g);
-				Logger::WriteMessage(std::to_string(res).c_str());
+				Logger::WriteMessage((std::to_string(res) + "\n").c_str());
 				Assert::IsTrue(g.IsColored());
 			}
+		}
+
+		TEST_METHOD(IsColoredBigGraphs) {
+			BitsColoringAlgorithm Bits(10.0f);
+			srand(0);
+			ColoredGraph g = GenerateRandomGraph(100, 0.15f);
+			int res = Bits.Color(g);
+			Logger::WriteMessage((std::to_string(res) + " " + std::to_string(g.GetColorCount())+"\n").c_str());
+			Assert::IsTrue(g.IsColored());
 		}
 
 	private:

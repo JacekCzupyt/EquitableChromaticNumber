@@ -1,8 +1,35 @@
-#include "BitsColoringAlgorithm.h"
+ï»¿#include "BitsColoringAlgorithm.h"
 #include <random>
 #include <chrono>
 
 namespace ecnGraph {
+
+	struct timer {
+	private:
+		std::chrono::steady_clock::time_point TickTime;
+		bool started = false;
+		long long totalTime = 0;
+	public:
+		void tick() {
+			if (started == true)
+				throw 400;
+			TickTime = std::chrono::steady_clock::now();
+			started = true;
+		}
+
+		void tock() {
+			if (started == false)
+				throw 400;
+			totalTime += std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - TickTime).count();
+			started = false;
+		}
+
+		double time() { return (double)totalTime / 1e6; }
+	};
+
+	timer Color_timer, InitialBinarySearch_timer, EvaluationFunction_timer, ExecuteMove_timer, 
+		ExploreNeighborhood1_timer, ExploreNeighborhood2_timer,
+		InitializeKColoring_timer, PertubationOperator_timer, Search_timer, IteratedSearch_timer, RefreshStructures_timer;
 
 	BitsColoringAlgorithm::BitsColoringAlgorithm(double _duration)
 	{
@@ -230,7 +257,7 @@ namespace ecnGraph {
 	{
 		std::vector<int>& colors = e.graph->Colors;
 
-		// Initialize and randomize vertex list (Fisher–Yates shuffle)
+		// Initialize and randomize vertex list (Fisherï¿½Yates shuffle)
 		std::vector<int> vert(e.graph->Size());
 		for (int i = 0; i < e.graph->Size(); i++) {
 			vert[i] = i;
