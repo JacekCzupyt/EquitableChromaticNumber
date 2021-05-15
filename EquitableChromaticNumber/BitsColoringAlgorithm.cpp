@@ -253,7 +253,7 @@ namespace ecnGraph {
 
 		for (int i = 0; i < eta; i++) {
 			//best move
-			move bm = ExploreNeighborhood(i - 2000); // TODO: improve tabu tenure
+			move bm = ExploreNeighborhood(i - 2000 - (rand()%1000));
 
 			ExecuteMove(bm, i);
 		}
@@ -294,7 +294,7 @@ namespace ecnGraph {
 
 		for (int i = 0; d < alpha && fs>0; i++) {
 			//best move
-			move bm = ExploreNeighborhood(i-10); // TODO: improve tabu tenure
+			move bm = ExploreNeighborhood(i-5-(rand()%5)); // TODO: implement other tabu tenure rules?
 			
 			ExecuteMove(bm, i);
 
