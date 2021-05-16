@@ -27,10 +27,6 @@ namespace ecnGraph {
 		double time() { return (double)totalTime / 1e6; }
 	};
 
-	timer Color_timer, InitialBinarySearch_timer, EvaluationFunction_timer, ExecuteMove_timer, 
-		ExploreNeighborhood1_timer, ExploreNeighborhood2_timer,
-		InitializeKColoring_timer, PertubationOperator_timer, Search_timer, IteratedSearch_timer, RefreshStructures_timer;
-
 	BitsColoringAlgorithm::BitsColoringAlgorithm(double _duration)
 	{
 		duration = _duration;
