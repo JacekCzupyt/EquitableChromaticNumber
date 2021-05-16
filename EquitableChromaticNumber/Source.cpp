@@ -15,29 +15,6 @@ using namespace ecnGraph;
 
 int main() {
 
-	//ColoredGraph g(5);
-	//g.AddEdge(0, 1);
-	//g.AddEdge(0, 2);
-	//g.AddEdge(0, 3);
-	//g.AddEdge(0, 4);
-
-	//GreedyAlgorithm algo;
-	//algo.Color(g);
-
-	//ColoredGraph gz(6);
-	//gz.AddEdge(0, 1);
-	//gz.AddEdge(1, 2);
-	//gz.AddEdge(2, 3);
-	//gz.AddEdge(3, 4);
-	//gz.AddEdge(4, 5);
-
-	//gz.Colors[0] = 0;
-	//gz.Colors[1] = 0;
-	//gz.Colors[2] = 0;
-	//gz.Colors[3] = 2;
-	//gz.Colors[4] = 1;
-	//gz.Colors[5] = 1;
-
 	ColoredGraph gz(5);
 	gz.AddEdge(0, 1);
 	gz.AddEdge(0, 2);
@@ -50,11 +27,17 @@ int main() {
 	gz.Colors[3] = 1;
 	gz.Colors[4] = 0;
 
+	ColoredGraph g(5);
+	g.AddEdge(0, 1);
+	g.AddEdge(0, 2);
+	g.AddEdge(0, 3);
+	g.AddEdge(0, 4);
 
 	JfkAlgorithm jfk;
-	jfk.Color(gz);
-	int x = 0;
-	std::cout << "Hello World";
+	GreedyAlgorithm grd;
+	int chromaticNumber1 = jfk.Color(gz);
+	int chromaticNumber2 = grd.Color(g);
 
-
+	std::cout << "jfk: Chromatic number equals " << chromaticNumber1 << ".\n";;
+	std::cout << "greedy: Chromatic number equals " << chromaticNumber2 << ".\n";;
 }
