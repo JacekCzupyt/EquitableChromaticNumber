@@ -8,9 +8,12 @@ namespace ecnGraph {
 	/// Represents a simple undirected graph
 	/// </summary>
 	class Graph {
-	protected:
-		std::vector<std::set<int>> Vertices;
+	
+		
 	public:
+
+		std::vector<std::set<int>> Vertices;
+
 		Graph(int n = 0/*Number of vertices*/);
 
 		/// Returns the number of vertices in the graph

@@ -24,6 +24,12 @@
     <ClCompile Include="ColoredGraph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="JfkAlgorithm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GreedyAlgorithm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="BitsColoringAlgorithm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -42,6 +48,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AbstractColoringAlgorithm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JfkAlgorithm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GreedyAlgorithm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BitsColoringAlgorithm.h">
