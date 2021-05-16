@@ -49,7 +49,8 @@ namespace EquitableChromaticNumberUnitTests
 			Assert::AreEqual(g1.GetColorCount(), 1);
 		}
 
-		TEST_METHOD(ColorCountMixed) {
+		// The current implementation deliberately forfits this functionality in favour of higher preformence
+		/*TEST_METHOD(ColorCountMixed) {
 			ColoredGraph g1(5);
 			Assert::AreEqual(g1.GetColorCount(), 0);
 
@@ -64,7 +65,7 @@ namespace EquitableChromaticNumberUnitTests
 
 			g1.Colors[2] = 10;
 			Assert::AreEqual(g1.GetColorCount(), 2);
-		}
+		}*/
 
 		TEST_METHOD(IsFullyColored) {
 			ColoredGraph g1(2);
@@ -135,7 +136,8 @@ namespace EquitableChromaticNumberUnitTests
 			Assert::AreEqual(g1.IsColoredEquitably(), false);
 		}
 
-		TEST_METHOD(IsColoredEquitablyMixed) {
+		// The current implementation deliberately forfits this functionality in favour of higher preformence
+		/*TEST_METHOD(IsColoredEquitablyMixed) {
 			ColoredGraph g1(5);
 			Assert::AreEqual(g1.IsColoredEquitably(), true);
 
@@ -158,6 +160,6 @@ namespace EquitableChromaticNumberUnitTests
 			g1.AddVertex();
 			g1.Colors[5] = 3;
 			Assert::AreEqual(g1.IsColoredEquitably(), false);
-		}
+		}*/
 	};
 }
