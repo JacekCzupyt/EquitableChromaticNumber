@@ -141,12 +141,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BitsColoringAlgorithm.cpp" />
     <ClCompile Include="ColoredGraph.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractColoringAlgorithm.h" />
+    <ClInclude Include="BitsColoringAlgorithm.h" />
     <ClInclude Include="ColoredGraph.h" />
     <ClInclude Include="Graph.h" />
   </ItemGroup>
