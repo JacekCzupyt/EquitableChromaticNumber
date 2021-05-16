@@ -27,6 +27,7 @@ namespace ecnGraph {
 		double time() { return (double)totalTime / 1e6; }
 	};
 
+
 	BitsColoringAlgorithm::BitsColoringAlgorithm(double _duration)
 	{
 		duration = _duration;
