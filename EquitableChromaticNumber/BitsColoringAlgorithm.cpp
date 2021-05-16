@@ -55,14 +55,10 @@ namespace ecnGraph {
 		int colorCount = BestColorCount;
 		auto startTime = std::chrono::steady_clock::now();
 
-		int count = 0;
-
 		while (std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - startTime).count() < duration * 1e6) {
 			
 			if (BestColorCount == 2)
 				break;
-
-			count++;
 
 			if (colorCount <= BestColorCount - m || colorCount == 2)
 				colorCount = BestColorCount - 1;
@@ -76,7 +72,7 @@ namespace ecnGraph {
 		}
 
 		graph->Colors = BestColoring;
-		return count;// TODO: change back to BestColorCount
+		return BestColorCount;
 	}
 
 	int BitsColoringAlgorithm::TabooSearch::InitialBinarySearch(int alpha)
@@ -273,8 +269,9 @@ namespace ecnGraph {
 			colors[vert[i]] = i;
 		}
 
-		//assign colors to the remaining verticies
-		// TODO: test, I'd be surprised if this does not have bugs
+		// assign colors to the remaining verticies
+		// TODO_ADDRESSED: test, I'd be surprised if this does not have bugs
+		// PS. I was right
 		std::vector<int> minSet;
 		minSet.reserve(e.graph->Size() - i);
 		int minVal = INT_MAX;
