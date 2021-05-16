@@ -1,4 +1,6 @@
 #include "Graph.h"
+#include <algorithm>
+
 
 namespace ecnGraph{
 	

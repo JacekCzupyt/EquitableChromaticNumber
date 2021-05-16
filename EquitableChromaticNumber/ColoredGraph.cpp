@@ -1,4 +1,5 @@
 #include "ColoredGraph.h"
+#include <algorithm>
 #include <map>
 
 namespace ecnGraph {
