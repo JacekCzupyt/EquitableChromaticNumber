@@ -8,7 +8,7 @@ namespace ecnGraph {
 		std::ifstream file(fileName);
 		if (file.is_open()) {
 			std::string line;
-			ColoredGraph* graph = nullptr;
+			ColoredGraph graph(0);
 			while (getline(file, line)) {
 				switch (line[0])
 				{
@@ -16,19 +16,19 @@ namespace ecnGraph {
 					break;
 				case 'p':
 					int n;
-					scanf("p edge %d %d", &n, nullptr);
-					graph = &ColoredGraph(n);
+					if(sscanf_s(line.c_str(), "p edge %d %*d", &n)!=1) throw 500;
+					graph = ColoredGraph(n);
 					break;
 				case 'e':
 					int a, b;
-					scanf("e %d %d", &a, &b);
-					graph->AddEdge(a-1, b-1);
+					if(sscanf_s(line.c_str(), "e %d %d", &a, &b)!=2) throw 500;
+					graph.AddEdge(a-1, b-1);
 					break;
 				default:
 					break;
 				}
 			}
-			return *graph;
+			return graph;
 		}
 		throw 404;
 	}
