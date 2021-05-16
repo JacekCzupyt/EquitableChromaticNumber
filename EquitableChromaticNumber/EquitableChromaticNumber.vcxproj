@@ -143,12 +143,16 @@
   <ItemGroup>
     <ClCompile Include="ColoredGraph.cpp" />
     <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="GreedyAlgorithm.cpp" />
+    <ClCompile Include="JfkAlgorithm.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractColoringAlgorithm.h" />
     <ClInclude Include="ColoredGraph.h" />
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="GreedyAlgorithm.h" />
+    <ClInclude Include="JfkAlgorithm.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
