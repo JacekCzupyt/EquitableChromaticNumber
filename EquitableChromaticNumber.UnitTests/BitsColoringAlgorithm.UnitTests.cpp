@@ -1,8 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../EquitableChromaticNumber/BitsColoringAlgorithm.h"
 #include "../EquitableChromaticNumber/BitsColoringAlgorithm.cpp"
-#include "../EquitableChromaticNumber/ColoredGraph.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -29,6 +27,16 @@ namespace EquitableChromaticNumberUnitTests {
 			int res = Bits.Color(g);
 			Logger::WriteMessage((std::to_string(res) + "\n").c_str());
 			Assert::IsTrue(g.IsColored());
+		}
+
+		TEST_METHOD(Color_myciel7) {
+			BitsColoringAlgorithm Bits(5.0f);
+			ColoredGraph g = ReadColFile("../TestCases/myciel7.col");
+			srand(0);
+			int res = Bits.Color(g);
+			Logger::WriteMessage((std::to_string(res) + "\n").c_str());
+			Assert::IsTrue(g.IsColored());
+			Assert::AreEqual(8, res);
 		}
 
 	private:

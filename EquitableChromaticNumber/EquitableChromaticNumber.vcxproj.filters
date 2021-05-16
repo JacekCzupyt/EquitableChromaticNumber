@@ -27,6 +27,9 @@
     <ClCompile Include="BitsColoringAlgorithm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ColFileReader.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
     <ClCompile Include="ColFileReader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
