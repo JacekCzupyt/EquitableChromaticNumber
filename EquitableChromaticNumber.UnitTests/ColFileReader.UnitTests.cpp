@@ -16,7 +16,7 @@ namespace EquitableChromaticNumberUnitTests {
 			Assert::IsTrue(graph.IsEdge(0, 1));
 			Assert::IsFalse(graph.IsEdge(0, 2));
 			Assert::IsTrue(graph.IsEdge(4, 108));
-			Assert::IsTrue(graph.IsEdge(107, 4));
+			Assert::IsFalse(graph.IsEdge(107, 4));
 			int sum = 0;
 			for (int v = 0; v < graph.Size(); v++) {
 				sum += graph.Deg(v);
