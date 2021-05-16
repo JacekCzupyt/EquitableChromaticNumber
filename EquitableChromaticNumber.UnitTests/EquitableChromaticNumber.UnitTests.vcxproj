@@ -156,6 +156,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BitsColoringAlgorithm.UnitTests.cpp" />
+    <ClCompile Include="ColFileReader.UnitTests.cpp" />
     <ClCompile Include="ColoredGraph.UnitTests.cpp" />
     <ClCompile Include="Graph.UnitTests.cpp" />
     <ClCompile Include="pch.cpp">
