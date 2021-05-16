@@ -112,7 +112,23 @@ namespace ecnGraph {
 			mostfrequents.clear();
 
 		}
-		return 0;
+
+		int res = 1;
+		int n = sizeof(Graph.Colors) / sizeof(Graph.Colors[0]);
+
+
+		// Pick all elements one by one
+		for (int i = 1; i < n; i++) {
+			int j = 0;
+			for (j = 0; j < i; j++)
+				if (Graph.Colors[i] == Graph.Colors[j])
+					break;
+
+			// If not printed earlier, then print it
+			if (i == j)
+				res++;
+		}
+		return res;
 	}
 }
 
