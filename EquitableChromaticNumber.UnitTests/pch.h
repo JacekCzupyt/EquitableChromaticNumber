@@ -9,4 +9,10 @@
 
 // add headers that you want to pre-compile here
 
+#include "../EquitableChromaticNumber/AbstractColoringAlgorithm.h"
+#include "../EquitableChromaticNumber/BitsColoringAlgorithm.h"
+#include "../EquitableChromaticNumber/ColoredGraph.h"
+#include "../EquitableChromaticNumber/Graph.h"
+#include "../EquitableChromaticNumber/ColFileReader.h"
+
 #endif //PCH_H

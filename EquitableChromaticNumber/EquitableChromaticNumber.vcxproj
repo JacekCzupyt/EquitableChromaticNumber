@@ -142,6 +142,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BitsColoringAlgorithm.cpp" />
+    <ClCompile Include="ColFileReader.cpp" />
+    <ClCompile Include="ColFileReader.h" />
     <ClCompile Include="ColoredGraph.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Source.cpp" />
