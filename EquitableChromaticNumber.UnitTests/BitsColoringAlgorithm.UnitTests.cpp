@@ -16,7 +16,8 @@ namespace EquitableChromaticNumberUnitTests {
 				ColoredGraph g = GenerateRandomGraph(5 + i % 10, (double)rand()/RAND_MAX);
 				int res = Bits.Color(g);
 				Logger::WriteMessage((std::to_string(res) + "\n").c_str());
-				Assert::IsTrue(g.IsColored());
+				Assert::IsTrue(g.IsColored(), L"Falied to color");
+				Assert::IsTrue(res = g.GetColorCount(), L"Result inconsistent with graph color count");
 			}
 		}
 
@@ -26,7 +27,9 @@ namespace EquitableChromaticNumberUnitTests {
 			ColoredGraph g = GenerateRandomGraph(100, 0.15f);
 			int res = Bits.Color(g);
 			Logger::WriteMessage((std::to_string(res) + "\n").c_str());
-			Assert::IsTrue(g.IsColored());
+			Assert::IsTrue(g.IsColored(), L"Falied to color");
+			Assert::IsTrue(res = g.GetColorCount(), L"Result inconsistent with graph color count");
+			Assert::IsTrue(res == 6, L"Res seems too high");
 		}
 
 		TEST_METHOD(Color_myciel7) {
@@ -35,8 +38,9 @@ namespace EquitableChromaticNumberUnitTests {
 			srand(0);
 			int res = Bits.Color(g);
 			Logger::WriteMessage((std::to_string(res) + "\n").c_str());
-			Assert::IsTrue(g.IsColored());
-			Assert::AreEqual(8, res);
+			Assert::IsTrue(g.IsColored(), L"Falied to color");
+			Assert::IsTrue(res = g.GetColorCount(), L"Result inconsistent with graph color count");
+			Assert::IsTrue(res == 8, L"Res seems too high");
 		}
 
 	private:
