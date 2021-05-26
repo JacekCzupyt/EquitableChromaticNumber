@@ -14,5 +14,7 @@
 #include "../EquitableChromaticNumber/ColoredGraph.h"
 #include "../EquitableChromaticNumber/Graph.h"
 #include "../EquitableChromaticNumber/ColFileReader.h"
+#include "../EquitableChromaticNumber/GreedyAlgorithm.h"
+#include "../EquitableChromaticNumber/JfkAlgorithm.h"
 
 #endif //PCH_H

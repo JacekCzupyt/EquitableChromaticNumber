@@ -14,33 +14,34 @@
 
 using namespace ecnGraph;
 
-int main() {
-
-	ColoredGraph gz(5);
+ColoredGraph getGz() {
+	ColoredGraph gz(12);
 	gz.AddEdge(0, 1);
 	gz.AddEdge(0, 2);
-	gz.AddEdge(0, 3);
-	gz.AddEdge(0, 4);
+	gz.AddEdge(0, 10);
+	gz.AddEdge(0, 11);
+	gz.AddEdge(0, 9);
+	gz.AddEdge(3, 10);
+	gz.AddEdge(4, 10);
+	gz.AddEdge(5, 10);
+	gz.AddEdge(11, 6);
+	gz.AddEdge(11, 7);
+	gz.AddEdge(11, 8);
+	return gz;
+}
 
-	gz.Colors[0] = 0;
-	gz.Colors[1] = 1;
-	gz.Colors[2] = 1;
-	gz.Colors[3] = 1;
-	gz.Colors[4] = 0;
 
-	ColoredGraph g(5);
-	g.AddEdge(0, 1);
-	g.AddEdge(0, 2);
-	g.AddEdge(0, 3);
-	g.AddEdge(0, 4);
+int main() {
 
 	JfkAlgorithm jfk;
 	GreedyAlgorithm grd;
 	BitsColoringAlgorithm bits1(0.2f);
 
-	int chromaticNumber1 = jfk.Color(gz);
-	int chromaticNumber2 = grd.Color(g);
-	int chromaticNumber3 = bits1.Color(g);
+	ColoredGraph g1 = getGz(), g2 = getGz(), g3 = getGz();
+
+	int chromaticNumber1 = jfk.Color(g1);
+	int chromaticNumber2 = grd.Color(g2);
+	int chromaticNumber3 = bits1.Color(g3);
 
 	std::cout << "jfk: Chromatic number equals " << chromaticNumber1 << ".\n";;
 	std::cout << "greedy: Chromatic number equals " << chromaticNumber2 << ".\n";;

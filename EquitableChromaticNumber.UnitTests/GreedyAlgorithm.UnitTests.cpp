@@ -1,23 +1,23 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../EquitableChromaticNumber/BitsColoringAlgorithm.cpp"
+#include "../EquitableChromaticNumber/GreedyAlgorithm.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace EquitableChromaticNumberUnitTests {
 	using namespace ecnGraph;
 
-	TEST_CLASS(BitsColoringAlgorithmUnitTests) {
+	TEST_CLASS(GreedyAlgorithmUnitTests) {
 	public:
 		TEST_METHOD(IsColoredSmallGraphs) {
-			BitsColoringAlgorithm Bits(0.2f);
+			GreedyAlgorithm grd;
 			srand(0);
 			int seed = rand();
 			for (int i = 0; i < 10; i++) {
 				srand(seed);
 				seed = rand();
-				ColoredGraph g = GenerateRandomGraph(5 + i % 10, (double)rand()/RAND_MAX);
-				int res = Bits.Color(g);
+				ColoredGraph g = GenerateRandomGraph(5 + i % 10,/* 0.3f + 0.7f * */(double)rand() / RAND_MAX);
+				int res = grd.Color(g);
 				Logger::WriteMessage((std::to_string(res) + "\n").c_str());
 				Assert::IsTrue(g.IsColored(), L"Falied to color");
 				Assert::IsTrue(res = g.GetColorCount(), L"Result inconsistent with graph color count");
@@ -25,25 +25,25 @@ namespace EquitableChromaticNumberUnitTests {
 		}
 
 		TEST_METHOD(IsColoredBigGraphs) {
-			BitsColoringAlgorithm Bits(5.0f);
+			GreedyAlgorithm grd;
 			srand(0);
 			ColoredGraph g = GenerateRandomGraph(100, 0.15f);
-			int res = Bits.Color(g);
+			int res = grd.Color(g);
 			Logger::WriteMessage((std::to_string(res) + "\n").c_str());
 			Assert::IsTrue(g.IsColored(), L"Falied to color");
 			Assert::IsTrue(res = g.GetColorCount(), L"Result inconsistent with graph color count");
-			Assert::IsTrue(res == 6, L"Res seems too high");
+			Assert::IsTrue(res < 20, L"Res seems too high, but check in with me if unsure");
 		}
 
 		TEST_METHOD(Color_myciel7) {
-			BitsColoringAlgorithm Bits(5.0f);
+			GreedyAlgorithm grd;
 			ColoredGraph g = ReadColFile("../TestCases/myciel7.col");
 			srand(0);
-			int res = Bits.Color(g);
+			int res = grd.Color(g);
 			Logger::WriteMessage((std::to_string(res) + "\n").c_str());
 			Assert::IsTrue(g.IsColored(), L"Falied to color");
 			Assert::IsTrue(res = g.GetColorCount(), L"Result inconsistent with graph color count");
-			Assert::IsTrue(res == 8, L"Res seems too high");
+			Assert::IsTrue(res < 30, L"Res seems too high, but check in with me if unsure");
 		}
 
 	private:
