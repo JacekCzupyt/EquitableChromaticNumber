@@ -12,8 +12,11 @@ namespace EquitableChromaticNumberUnitTests {
 		TEST_METHOD(IsColoredSmallGraphs) {
 			GreedyAlgorithm grd;
 			srand(0);
+			int seed = rand();
 			for (int i = 0; i < 10; i++) {
-				ColoredGraph g = GenerateRandomGraph(5 + i % 10, 0.3f + 0.7f * (double)rand() / RAND_MAX);
+				srand(seed);
+				seed = rand();
+				ColoredGraph g = GenerateRandomGraph(5 + i % 10,/* 0.3f + 0.7f * */(double)rand() / RAND_MAX);
 				int res = grd.Color(g);
 				Logger::WriteMessage((std::to_string(res) + "\n").c_str());
 				Assert::IsTrue(g.IsColored(), L"Falied to color");

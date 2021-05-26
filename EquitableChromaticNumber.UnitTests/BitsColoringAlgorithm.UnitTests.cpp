@@ -12,7 +12,10 @@ namespace EquitableChromaticNumberUnitTests {
 		TEST_METHOD(IsColoredSmallGraphs) {
 			BitsColoringAlgorithm Bits(0.2f);
 			srand(0);
+			int seed = rand();
 			for (int i = 0; i < 10; i++) {
+				srand(seed);
+				seed = rand();
 				ColoredGraph g = GenerateRandomGraph(5 + i % 10, (double)rand()/RAND_MAX);
 				int res = Bits.Color(g);
 				Logger::WriteMessage((std::to_string(res) + "\n").c_str());
