@@ -13,6 +13,16 @@ namespace ecnGraph {
 
 	int JfkAlgorithm::Color(ColoredGraph& Graph)
 	{
+		srand(0);
+
+		for (int i = 0; i < Graph.Colors.size();i++)
+		{
+			
+
+			//Graph.Colors[i] = (rand() % Graph.Colors.size()) + 1;
+			Graph.Colors[i] = 1;
+		}
+
 		std::vector<int> mostfrequents;
 
 		//main loop
@@ -24,6 +34,7 @@ namespace ecnGraph {
 				if (Graph.Colors[i] != -1)
 					ColorHistogram[Graph.Colors[i]] = ColorHistogram.count(Graph.Colors[i]) ? ColorHistogram[Graph.Colors[i]] + 1 : 1;
 			}
+			mostfrequents.clear();
 
 			int mostfrequent = -1;
 			int mostfrequentvalue = 0;
@@ -109,12 +120,11 @@ namespace ecnGraph {
 					}
 				}
 			}
-			mostfrequents.clear();
 
 		}
 
 		int res = 1;
-		int n = sizeof(Graph.Colors) / sizeof(Graph.Colors[0]);
+		int n = Graph.Colors.size();
 
 
 		// Pick all elements one by one

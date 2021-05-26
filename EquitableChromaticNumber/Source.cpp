@@ -16,31 +16,52 @@ using namespace ecnGraph;
 
 int main() {
 
-	ColoredGraph gz(5);
+	ColoredGraph gz(12);
 	gz.AddEdge(0, 1);
 	gz.AddEdge(0, 2);
-	gz.AddEdge(0, 3);
-	gz.AddEdge(0, 4);
+	gz.AddEdge(0, 10);
+	gz.AddEdge(0, 11);
+	gz.AddEdge(0, 9);
+	gz.AddEdge(3, 10);
+	gz.AddEdge(4, 10);
+	gz.AddEdge(5, 10);
+	gz.AddEdge(11, 6);
+	gz.AddEdge(11, 7);
+	gz.AddEdge(11, 8);
 
-	gz.Colors[0] = 0;
-	gz.Colors[1] = 1;
-	gz.Colors[2] = 1;
-	gz.Colors[3] = 1;
-	gz.Colors[4] = 0;
+	ColoredGraph gk(12);
+	gk.AddEdge(0, 1);
+	gk.AddEdge(0, 2);
+	gk.AddEdge(0, 10);
+	gk.AddEdge(0, 11);
+	gk.AddEdge(0, 9);
+	gk.AddEdge(3, 10);
+	gk.AddEdge(4, 10);
+	gk.AddEdge(5, 10);
+	gk.AddEdge(11, 6);
+	gk.AddEdge(11, 7);
+	gk.AddEdge(11, 8);
 
-	ColoredGraph g(5);
-	g.AddEdge(0, 1);
-	g.AddEdge(0, 2);
-	g.AddEdge(0, 3);
-	g.AddEdge(0, 4);
+	ColoredGraph gk2(12);
+	gk2.AddEdge(0, 1);
+	gk2.AddEdge(0, 2);
+	gk2.AddEdge(0, 10);
+	gk2.AddEdge(0, 11);
+	gk2.AddEdge(0, 9);
+	gk2.AddEdge(3, 10);
+	gk2.AddEdge(4, 10);
+	gk2.AddEdge(5, 10);
+	gk2.AddEdge(11, 6);
+	gk2.AddEdge(11, 7);
+	gk2.AddEdge(11, 8);
 
 	JfkAlgorithm jfk;
 	GreedyAlgorithm grd;
 	BitsColoringAlgorithm bits1(0.2f);
 
 	int chromaticNumber1 = jfk.Color(gz);
-	int chromaticNumber2 = grd.Color(g);
-	int chromaticNumber3 = bits1.Color(g);
+	int chromaticNumber2 = grd.Color(gk);
+	int chromaticNumber3 = bits1.Color(gk2);
 
 	std::cout << "jfk: Chromatic number equals " << chromaticNumber1 << ".\n";;
 	std::cout << "greedy: Chromatic number equals " << chromaticNumber2 << ".\n";;
